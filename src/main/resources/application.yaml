@@ -19,3 +19,5 @@ spring:
   booking:
     thread:
       pool-size: 10
+    expiry:
+      delay-ms: 1800000

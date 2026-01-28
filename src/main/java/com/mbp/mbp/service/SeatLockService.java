@@ -40,6 +40,19 @@ public class SeatLockService {
         }
     }
 
+    public void unlockSeats(Long showId, List<Long> seatIds) {
+
+        if (seatIds == null || seatIds.isEmpty()) {
+            return;
+        }
+
+        List<String> keys = seatIds.stream()
+                .map(seatId -> buildKey(showId, seatId))
+                .toList();
+
+        redisTemplate.delete(keys);
+    }
+
     private String buildKey(Long showId, Long seatId) {
         return "lock:show:" + showId + ":seat:" + seatId;
     }

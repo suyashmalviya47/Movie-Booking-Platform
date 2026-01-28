@@ -25,5 +25,15 @@ CREATE TABLE bookings (
                                   REFERENCES shows(id)
 );
 
+CREATE TABLE booking_seats (
+                               booking_id BIGINT NOT NULL,
+                               seat_id BIGINT NOT NULL,
+                               PRIMARY KEY (booking_id, seat_id),
+                               CONSTRAINT fk_booking_seats
+                                   FOREIGN KEY (booking_id)
+                                       REFERENCES bookings(id)
+                                       ON DELETE CASCADE
+);
+
 CREATE INDEX idx_seats_show_id ON seats(show_id);
 CREATE INDEX idx_bookings_show_id ON bookings(show_id);

@@ -4,10 +4,7 @@ import com.mbp.mbp.dto.LockSeatRequest;
 import com.mbp.mbp.service.BookingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/bookings")
@@ -20,5 +17,13 @@ public class BookingController {
     public ResponseEntity<String> lockSeats(@RequestBody LockSeatRequest request) {
         bookingService.lockSeats(request);
         return ResponseEntity.ok("Seats locked");
+    }
+
+    @PostMapping("/{bookingId}/cancel")
+    public ResponseEntity<String> cancelBooking(
+            @PathVariable Long bookingId) {
+
+        bookingService.cancelBooking(bookingId);
+        return ResponseEntity.ok("Booking cancelled successfully");
     }
 }
