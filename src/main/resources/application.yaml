@@ -16,4 +16,6 @@ spring:
       instances:
         paymentService:
           failureRateThreshold: 50
-
+  booking:
+    thread:
+      pool-size: 10
